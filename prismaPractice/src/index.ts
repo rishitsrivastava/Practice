@@ -27,3 +27,34 @@ async function getUsers(userid: number) {
 }
 
 // getUsers(3)
+
+async function insertTodo(userId: number) {
+    const response = await prisma.todo.create({
+        data: {
+            title: "learning prisma",
+            description: "trying to complete it today",
+            userId: userId
+        }
+    })
+    console.log(response);
+}
+
+// insertTodo(3);
+
+
+async function getTodosandUsers(userid: number) {
+    const response = await prisma.todo.findMany({
+        where: {
+            userId: userid
+        },
+        select: {
+            title: true,
+            description: true,
+            done: true,
+            user: true
+        }
+    })
+    console.log(response)
+}
+
+getTodosandUsers(3)
