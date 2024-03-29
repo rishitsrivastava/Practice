@@ -21,6 +21,7 @@ model User {
   firstname     String?  
   lastname      String? 
   email         String?
+  todos          Todo[]
 }
 
 model Todo {
@@ -28,5 +29,6 @@ model Todo {
   title         String   
   description   String 
   done          Boolean   @default(false)
-  userId        Int       
+  userId        Int    
+  user          User      @relation(fields: [userId], references: [id])   
 }
