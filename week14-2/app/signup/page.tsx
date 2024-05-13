@@ -5,7 +5,7 @@ export default async function Home() {
   
   return (
     <div className="">
-        hi there from root
+        <Signup />
     </div>
   );
 }
