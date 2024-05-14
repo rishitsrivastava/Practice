@@ -1,11 +1,12 @@
-"use client"
-
 import axios from "axios";
+import { useRouter } from "next/router";
 import { ChangeEventHandler, useState } from "react";
+
 
 export function Signup() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const router = useRouter();
 
     return <div className="h-screen flex justify-center flex-col">
         <div className="flex justify-center">
@@ -23,22 +24,20 @@ export function Signup() {
                         <LabelledInput onChange={(e) => {
                             setPassword(e.target.value)
                         }} label="Password" type={"password"} placeholder="123456" />
-                        <button onClick={() => {
-                            axios.post("http://localhost:3000/api/user", {
+                        <button onClick={async () => {
+                            const response = await axios.post("http://localhost:3000/api/user", {
                                 username,
                                 password
                             });
-                            }} type="button" 
-                            className="mt-8 w-full text-white bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
-                                Sign in
-                            </button>
+                            router.push("/")
+                        }} type="button" className="mt-8 w-full text-white bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Sign in</button>
                     </div>
                 </div>
             </a>
         </div>
     </div>
-
 }
+
 
 function LabelledInput({ label, placeholder, type, onChange }: LabelledInputType) {
     return <div>
