@@ -1,2 +1,2 @@
-# do not add node modules
+# do not add node modules to git
 node_modules
